@@ -483,51 +483,7 @@
   </div>
 
   <script>
-  // === Данные текущего состояния ===
-const current = 4200;     // собранная сумма
-const goal = 70000;       // цель
-
-const jarFill = document.getElementById("jarFill");
-const jarLabel = document.getElementById("jarLabel");
-const timelineFill = document.getElementById("timelineFill");
-const timelineShip = document.getElementById("timelineShip");
-const events = document.querySelectorAll(".event");
-const activityItems = document.querySelectorAll(".events li");
-
-// Формат суммы в SEK
-function formatKr(n) {
-  return new Intl.NumberFormat("sv-SE").format(n) + " kr";
-}
-
-// Отрисовка делений справа от банки
-function renderJarTicks() {
-  const jarTicks = document.getElementById("jarTicks");
-  if (!jarTicks) return;
-
-  jarTicks.innerHTML = "";
-  const ticks = [0, 5000, 10000, 20000, 30000, 70000];
-
-  ticks.forEach(v => {
-    const tick = document.createElement("div");
-    tick.className = "jar-tick";
-    tick.style.bottom = (v / goal * 100) + "%";
-    tick.textContent = formatKr(v);
-    jarTicks.appendChild(tick);
-  });
-}
-
-// Заливка банки и обновление подписи
-function updateJarFill() {
-  const pctReal = Math.min(current / goal, 1); // реальный %
-  const pctShown = (current > 0 && pctReal < 0.03) ? 0.03 : pctReal; // минимум 3%
-
-  jarFill.style.height = (pctShown * 100) + "%";
-  jarLabel.textContent = formatKr(current);
-}
-
-// Вызовы при загрузке
-renderJarTicks();
-updateJarFill();
+ // === Данные текущего состояния === const current = 4200; const goal = 70000; const jarFill = document.getElementById("jarFill"); const jarLabel = document.getElementById("jarLabel"); const timelineFill = document.getElementById("timelineFill"); const timelineShip = document.getElementById("timelineShip"); const events = document.querySelectorAll(".event"); const activityItems = document.querySelectorAll(".events li"); function formatKr(n) { return new Intl.NumberFormat("sv-SE").format(n) + " kr"; } function updateJarFill() { const pctReal = Math.min(current / goal, 1); // реальный % const pctShown = (current > 0 && pctReal < 0.03) // min 3% для видимости ? 0.03 : pctReal; document.getElementById('jarFill').style.height = (pctShown * 100) + '%'; document.getElementById('jarLabel').textContent = new Intl.NumberFormat('sv-SE').format(current) + ' kr'; }
 
     function markEvents() {
       events.forEach((ev) => {
