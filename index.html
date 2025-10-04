@@ -563,12 +563,11 @@
     const frac  = Math.min(Math.max((CURRENT - prev.goal) / span, 0), 1);
     const y     = prev.y + (next.y - prev.y) * frac;
 
-    // Заливка вертикальной линии от первого события до кораблика
-    const startY = pts[0].y;
-    timelineFill.style.top    = startY + "px";
-    timelineFill.style.height = Math.max(0, y - startY) + "px";
-    timelineShip.style.top    = y + "px";
-  }
+    // стало: от самого верха линии
+timelineFill.style.top    = "0px";        // начало — самый верх таймлайна
+timelineFill.style.height = Math.max(0, y) + "px"; // высота = расстояние до кораблика
+timelineShip.style.top    = y + "px";
+
 
   // --- Прошедшие активности перечёркиваем ---
   function markPastActivities() {
