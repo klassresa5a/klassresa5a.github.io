@@ -483,74 +483,100 @@
   </div>
 
   <script>
- // === Данные текущего состояния === const current = 4200; const goal = 70000; const jarFill = document.getElementById("jarFill"); const jarLabel = document.getElementById("jarLabel"); const timelineFill = document.getElementById("timelineFill"); const timelineShip = document.getElementById("timelineShip"); const events = document.querySelectorAll(".event"); const activityItems = document.querySelectorAll(".events li"); function formatKr(n) { return new Intl.NumberFormat("sv-SE").format(n) + " kr"; } function updateJarFill() { const pctReal = Math.min(current / goal, 1); // реальный % const pctShown = (current > 0 && pctReal < 0.03) // min 3% для видимости ? 0.03 : pctReal; document.getElementById('jarFill').style.height = (pctShown * 100) + '%'; document.getElementById('jarLabel').textContent = new Intl.NumberFormat('sv-SE').format(current) + ' kr'; }
+<script>
+  // === Данные текущего состояния ===
+  const current = 4200;   // Собрано
+  const goal = 70000;     // Цель
 
-    function markEvents() {
-      events.forEach((ev) => {
-        const need = +ev.dataset.goal;
-        if (current >= need) {
-          ev.classList.add("active");
-          ev.classList.add("reached");
-        }
-      });
-    }
+  const jarFill = document.getElementById("jarFill");
+  const jarLabel = document.getElementById("jarLabel");
+  const timelineFill = document.getElementById("timelineFill");
+  const timelineShip = document.getElementById("timelineShip");
+  const events = document.querySelectorAll(".event");
+  const activityItems = document.querySelectorAll(".events li");
 
-    function updateTimeline() {
-      const values = Array.from(events).map((ev) => ({
-        el: ev,
-        goal: +ev.dataset.goal,
-        y: ev.offsetTop
-      }));
+  function formatKr(n) {
+    return new Intl.NumberFormat("sv-SE").format(n) + " kr";
+  }
 
-      let prev = null;
-      let next = null;
+  // Заполнение банки
+  function updateJarFill() {
+    const pctReal = Math.min(current / goal, 1);
 
-      for (let i = 0; i < values.length - 1; i++) {
-        if (current >= values[i].goal && current <= values[i + 1].goal) {
-          prev = values[i];
-          next = values[i + 1];
-          break;
-        }
+    // применяем лёгкое "усиление" низа (0.8) и минимум 6%
+    const boosted = Math.pow(pctReal, 0.8);
+    const pctShown = (current > 0)
+      ? Math.max(boosted, 0.06)
+      : 0;
+
+    jarFill.style.height = (pctShown * 100) + "%";
+    jarLabel.textContent = formatKr(current);
+  }
+
+  // Подсветка пройденных точек
+  function markEvents() {
+    events.forEach((ev) => {
+      const need = +ev.dataset.goal;
+      if (current >= need) {
+        ev.classList.add("active", "reached");
       }
-      if (!prev) {
-        prev = values[0];
-        next = values[1];
+    });
+  }
+
+  // Позиция кораблика и заливка таймлайна
+  function updateTimeline() {
+    const values = Array.from(events).map((ev) => ({
+      el: ev,
+      goal: +ev.dataset.goal,
+      y: ev.offsetTop
+    }));
+
+    let prev = values[0], next = values[1];
+    for (let i = 0; i < values.length - 1; i++) {
+      if (current >= values[i].goal && current <= values[i + 1].goal) {
+        prev = values[i];
+        next = values[i + 1];
+        break;
       }
-
-      const range = next.goal - prev.goal;
-      const offset = current - prev.goal;
-      const percent = range > 0 ? offset / range : 0;
-      const y = prev.y + (next.y - prev.y) * percent;
-
-      const startY = values[0].y;
-      timelineFill.style.top = startY + "px";
-      timelineFill.style.height = (y - startY) + "px";
-
-      timelineShip.style.top = y + "px";
     }
 
-    function markPastActivities() {
-      const now = new Date();
-      activityItems.forEach((li) => {
-        const dateStr = li.getAttribute("data-date");
-        if (!dateStr) return;
-        const dt = new Date(dateStr);
-        if (dt < now) {
-          li.classList.add("past");
-        }
-      });
-    }
+    const range = next.goal - prev.goal;
+    const offset = current - prev.goal;
+    const percent = range > 0 ? offset / range : 0;
+    const y = prev.y + (next.y - prev.y) * percent;
 
-    // Инициализация
-    updateJarFill();
-    markEvents();
-    updateTimeline();
-    markPastActivities();
+    const startY = values[0].y;
+    timelineFill.style.top = startY + "px";
+    timelineFill.style.height = (y - startY) + "px";
 
-    window.addEventListener("resize", updateTimeline);
+    timelineShip.style.top = y + "px";
+  }
+
+  // Отметка прошедших активитетов
+  function markPastActivities() {
+    const now = new Date();
+    activityItems.forEach((li) => {
+      const dateStr = li.getAttribute("data-date");
+      if (!dateStr) return;
+      const dt = new Date(dateStr);
+      if (dt < now) {
+        li.classList.add("past");
+      }
+    });
+  }
+
+  // Инициализация
+  updateJarFill();
+  markEvents();
+  updateTimeline();
+  markPastActivities();
+
+  window.addEventListener("resize", updateTimeline);
+</script>
   </script>
 </body>
 </html>
+
 
 
 
