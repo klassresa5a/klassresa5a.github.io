@@ -83,36 +83,41 @@
       white-space: nowrap;
     }
 
-   /* Контейнер шкалы */
+ 
+
+/* Контейнер шкалы справа от банки — равномерные отступы */
 .jar-ticks{
   position:absolute;
-  top:0; bottom:0;
-  left:100%;
+  top:0; left:100%;
+  height:100%;
   margin-left:8px;
-  width:56px;                 /* чуть шире для длинных чисел */
+  width:56px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;   /* равномерно распределяем метки */
 }
 
-/* Одна метка (позиционируем по bottom: %) */
-.jar-tick{
-  position:absolute;
-  transform: translateY(50%); /* чтобы текст центрировался по риске */
+/* Стиль самих меток */
+.jar-ticks span{
+  position:relative;
   font-size:12px;
   color:#666;
   white-space:nowrap;
 }
 
-/* Небольшая риска, выровненная с уровнем */
-.jar-tick::before{
+/* Маленькая риска слева от метки */
+.jar-ticks span::before{
   content:"";
   position:absolute;
   right:100%;
   margin-right:6px;
   top:50%;
-  transform: translateY(-50%);
+  transform:translateY(-50%);
   width:10px; height:2px;
   background:#9bb6cc;
   border-radius:1px;
 }
+
 
     .timeline {
       display: flex;
@@ -484,34 +489,51 @@
 
   <script>
 <script>
-  // === Данные текущего состояния ===
-  const current = 4200;   // Собрано
-  const goal = 70000;     // Цель
+  // === Текущие значения ===
+const current = 4200;
+const goal = 70000;
 
-  const jarFill = document.getElementById("jarFill");
-  const jarLabel = document.getElementById("jarLabel");
-  const timelineFill = document.getElementById("timelineFill");
-  const timelineShip = document.getElementById("timelineShip");
-  const events = document.querySelectorAll(".event");
-  const activityItems = document.querySelectorAll(".events li");
+const jarFill = document.getElementById("jarFill");
+const jarLabel = document.getElementById("jarLabel");
+const timelineFill = document.getElementById("timelineFill");
+const timelineShip = document.getElementById("timelineShip");
+const events = document.querySelectorAll(".event");
+const activityItems = document.querySelectorAll(".events li");
 
-  function formatKr(n) {
-    return new Intl.NumberFormat("sv-SE").format(n) + " kr";
+function formatKr(n) {
+  return new Intl.NumberFormat("sv-SE").format(n) + " kr";
+}
+
+// Наши «опорные» деления (как на метках справа), равномерно делят банку на 5 сегментов
+const SCALE_TICKS = [0, 5000, 10000, 20000, 30000, 70000];
+
+// Проекция суммы на равные сегменты (чтобы 5k всегда было ровно на 1/5 высоты и т.д.)
+function segmentedPercent(value, ticks) {
+  const steps = ticks.length - 1;        // 5
+  if (value <= ticks[0]) return 0;
+  if (value >= ticks[steps]) return 1;
+
+  // найти сегмент [i .. i+1], в который попадает value
+  let i = 0;
+  for (; i < steps; i++) {
+    if (value >= ticks[i] && value <= ticks[i+1]) break;
   }
+  const segStart = ticks[i];
+  const segEnd   = ticks[i+1];
+  const segFrac  = (value - segStart) / (segEnd - segStart); // 0..1 внутри сегмента
+  return (i + segFrac) / steps; // доля высоты банки
+}
 
-  // Заполнение банки
-  function updateJarFill() {
-    const pctReal = Math.min(current / goal, 1);
+// Заливка банки по «сегментной» шкале + небольшой визуальный минимум
+function updateJarFill() {
+  const pctSeg = segmentedPercent(current, SCALE_TICKS);   // 0..1 по равным сегментам
+  const pctShown = (current > 0) ? Math.max(pctSeg, 0.06) : 0; // минимум 6% для видимости
+  jarFill.style.height = (pctShown * 100) + "%";
+  jarLabel.textContent = formatKr(current);
+}
 
-    // применяем лёгкое "усиление" низа (0.8) и минимум 6%
-    const boosted = Math.pow(pctReal, 0.8);
-    const pctShown = (current > 0)
-      ? Math.max(boosted, 0.06)
-      : 0;
+/* Остальной код (таймлайн, кораблик, активности) оставь как есть */
 
-    jarFill.style.height = (pctShown * 100) + "%";
-    jarLabel.textContent = formatKr(current);
-  }
 
   // Подсветка пройденных точек
   function markEvents() {
@@ -576,6 +598,7 @@
   </script>
 </body>
 </html>
+
 
 
 
