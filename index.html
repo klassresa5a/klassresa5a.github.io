@@ -59,17 +59,12 @@
       box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
     }
 
-    .jar-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, #2193b0, #6dd5ed);
-      transform-origin: bottom;
-      transform: scaleY(0);
-      transition: transform 0.5s ease-in-out;
-    }
+  .jar-fill{
+  position:absolute; bottom:0; left:0; width:100%;
+  height:0%;                              /* 👈 теперь высота в % */
+  background:linear-gradient(to top,#2193b0,#6dd5ed);
+  transition:height .5s ease-in-out;
+}
 
     .jar-label {
       position: absolute;
@@ -491,11 +486,16 @@
       return new Intl.NumberFormat("sv-SE").format(n) + " kr";
     }
 
-    function updateJarFill() {
-      const pct = Math.min(current / goal, 1);
-      jarFill.style.transform = `scaleY(${pct})`;
-      jarLabel.textContent = formatKr(current);
-    }
+   function updateJarFill() {
+  const pctReal = Math.min(current / goal, 1);       // реальный %
+  const pctShown = (current > 0 && pctReal < 0.03)   // min 3% для видимости
+    ? 0.03
+    : pctReal;
+
+  document.getElementById('jarFill').style.height = (pctShown * 100) + '%';
+  document.getElementById('jarLabel').textContent =
+    new Intl.NumberFormat('sv-SE').format(current) + ' kr';
+}
 
     function markEvents() {
       events.forEach((ev) => {
@@ -563,6 +563,7 @@
   </script>
 </body>
 </html>
+
 
 
 
