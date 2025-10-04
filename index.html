@@ -488,114 +488,115 @@
   </div>
 
   <script>
-<script>
-  // === Текущие значения ===
-const current = 4200;
-const goal = 70000;
+(() => {
+  // ====== EDIT HERE ======
+  const CURRENT = 4200;        // собрано
+  const GOAL    = 70000;       // цель
+  // Деления банки (должны соответствовать твоим 6 подписям справа)
+  const TICKS   = [0, 5000, 10000, 20000, 30000, 70000];
+  // ========================
 
-const jarFill = document.getElementById("jarFill");
-const jarLabel = document.getElementById("jarLabel");
-const timelineFill = document.getElementById("timelineFill");
-const timelineShip = document.getElementById("timelineShip");
-const events = document.querySelectorAll(".event");
-const activityItems = document.querySelectorAll(".events li");
+  // DOM refs
+  const jarFill      = document.getElementById("jarFill");
+  const jarLabel     = document.getElementById("jarLabel");
+  const timeline     = document.getElementById("timeline");
+  const timelineFill = document.getElementById("timelineFill");
+  const timelineShip = document.getElementById("timelineShip");
+  const events       = Array.from(timeline.querySelectorAll(".event"));
+  const activityItems= document.querySelectorAll(".events li");
 
-function formatKr(n) {
-  return new Intl.NumberFormat("sv-SE").format(n) + " kr";
-}
+  const fmt = n => new Intl.NumberFormat("sv-SE").format(n) + " kr";
 
-// Наши «опорные» деления (как на метках справа), равномерно делят банку на 5 сегментов
-const SCALE_TICKS = [0, 5000, 10000, 20000, 30000, 70000];
+  // --- Проекция суммы на равные сегменты шкалы банки (между TICKS) ---
+  // Так 5 000 всегда будет ровно на 1/5 высоты, 10 000 — на 2/5 и т.д.
+  function segmentedPercent(val) {
+    const steps = TICKS.length - 1;       // 5 сегментов
+    if (val <= TICKS[0]) return 0;
+    if (val >= TICKS[steps]) return 1;
 
-// Проекция суммы на равные сегменты (чтобы 5k всегда было ровно на 1/5 высоты и т.д.)
-function segmentedPercent(value, ticks) {
-  const steps = ticks.length - 1;        // 5
-  if (value <= ticks[0]) return 0;
-  if (value >= ticks[steps]) return 1;
-
-  // найти сегмент [i .. i+1], в который попадает value
-  let i = 0;
-  for (; i < steps; i++) {
-    if (value >= ticks[i] && value <= ticks[i+1]) break;
+    let i = 0;
+    for (; i < steps; i++) {
+      if (val >= TICKS[i] && val <= TICKS[i + 1]) break;
+    }
+    const segStart = TICKS[i], segEnd = TICKS[i + 1];
+    const frac     = (val - segStart) / (segEnd - segStart); // 0..1 внутри сегмента
+    return (i + frac) / steps; // 0..1 по высоте банки
   }
-  const segStart = ticks[i];
-  const segEnd   = ticks[i+1];
-  const segFrac  = (value - segStart) / (segEnd - segStart); // 0..1 внутри сегмента
-  return (i + segFrac) / steps; // доля высоты банки
-}
 
-// Заливка банки по «сегментной» шкале + небольшой визуальный минимум
-function updateJarFill() {
-  const pctSeg = segmentedPercent(current, SCALE_TICKS);   // 0..1 по равным сегментам
-  const pctShown = (current > 0) ? Math.max(pctSeg, 0.06) : 0; // минимум 6% для видимости
-  jarFill.style.height = (pctShown * 100) + "%";
-  jarLabel.textContent = formatKr(current);
-}
+  // --- Банка: визуальная заливка + подпись суммы ---
+  function updateJar() {
+    let p = segmentedPercent(CURRENT);     // 0..1
+    // небольшой минимум, чтобы низ не выглядел "пустым" при очень малых суммах
+    if (CURRENT > 0 && p < 0.06) p = 0.06;
+    jarFill.style.height = (p * 100) + "%";
+    jarLabel.textContent = fmt(CURRENT);
+  }
 
-/* Остальной код (таймлайн, кораблик, активности) оставь как есть */
-
-
-  // Подсветка пройденных точек
+  // --- Подсветка пройденных событий ---
   function markEvents() {
-    events.forEach((ev) => {
-      const need = +ev.dataset.goal;
-      if (current >= need) {
-        ev.classList.add("active", "reached");
-      }
+    events.forEach(ev => {
+      const need = Number(ev.dataset.goal) || 0;
+      if (CURRENT >= need) ev.classList.add("active", "reached");
+      else ev.classList.remove("reached");
     });
   }
 
-  // Позиция кораблика и заливка таймлайна
+  // --- Таймлайн: позиция кораблика и заливка линии до него ---
   function updateTimeline() {
-    const values = Array.from(events).map((ev) => ({
+    // Координаты событий (берём центр блока события)
+    const pts = events.map(ev => ({
       el: ev,
-      goal: +ev.dataset.goal,
-      y: ev.offsetTop
+      goal: Number(ev.dataset.goal) || 0,
+      y: ev.offsetTop + ev.offsetHeight / 2
     }));
 
-    let prev = values[0], next = values[1];
-    for (let i = 0; i < values.length - 1; i++) {
-      if (current >= values[i].goal && current <= values[i + 1].goal) {
-        prev = values[i];
-        next = values[i + 1];
-        break;
+    // Найти сегмент prev..next, внутри которого находится CURRENT
+    let prev = pts[0], next = pts[1];
+    for (let i = 0; i < pts.length - 1; i++) {
+      if (CURRENT >= pts[i].goal && CURRENT <= pts[i + 1].goal) {
+        prev = pts[i]; next = pts[i + 1]; break;
       }
     }
 
-    const range = next.goal - prev.goal;
-    const offset = current - prev.goal;
-    const percent = range > 0 ? offset / range : 0;
-    const y = prev.y + (next.y - prev.y) * percent;
+    // Интерполяция по сегменту
+    const span  = Math.max(1, next.goal - prev.goal);
+    const frac  = Math.min(Math.max((CURRENT - prev.goal) / span, 0), 1);
+    const y     = prev.y + (next.y - prev.y) * frac;
 
-    const startY = values[0].y;
-    timelineFill.style.top = startY + "px";
-    timelineFill.style.height = (y - startY) + "px";
-
-    timelineShip.style.top = y + "px";
+    // Заливка вертикальной линии от первого события до кораблика
+    const startY = pts[0].y;
+    timelineFill.style.top    = startY + "px";
+    timelineFill.style.height = Math.max(0, y - startY) + "px";
+    timelineShip.style.top    = y + "px";
   }
 
-  // Отметка прошедших активитетов
+  // --- Прошедшие активности перечёркиваем ---
   function markPastActivities() {
     const now = new Date();
-    activityItems.forEach((li) => {
-      const dateStr = li.getAttribute("data-date");
-      if (!dateStr) return;
-      const dt = new Date(dateStr);
-      if (dt < now) {
-        li.classList.add("past");
+    activityItems.forEach(li => {
+      const ds = li.getAttribute("data-date");
+      if (!ds) return;
+      const dt = new Date(ds);
+      if (isFinite(dt)) {
+        if (dt < now) li.classList.add("past");
+        else li.classList.remove("past");
       }
     });
   }
 
-  // Инициализация
-  updateJarFill();
-  markEvents();
-  updateTimeline();
-  markPastActivities();
+  function init() {
+    updateJar();
+    markEvents();
+    updateTimeline();
+    markPastActivities();
+  }
 
+  // Запуск после отрисовки/шрифтов
+  document.addEventListener("DOMContentLoaded", init);
+  window.addEventListener("load", updateTimeline);
   window.addEventListener("resize", updateTimeline);
+})();
 </script>
-  </script>
 </body>
 </html>
 
