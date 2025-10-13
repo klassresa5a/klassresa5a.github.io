@@ -14,7 +14,7 @@ window.KLASSRESA_CONFIG = {
     { date: "2025-10-16", text: "Sista beställningsdag",          icon: "📦" },
     { date: "2025-11-15", text: "Halloweenfest i lokalen",        icon: "🎃" },
     { date: "2025-11-30", text: "Slutet av nov: Nästa försäljning", icon: "💰" },
-    { date: "2026-01-01", text: "Januari–februari: Filmkväll",    icon: "🎬" },
+    { date: "Jan–feb", text: "Filmkväll",    icon: "🎬" },
     { date: "2026-04-01", text: "Vår 2026: Garage loppis",        icon: "♻️" },
     { date: "2026-05-01", text: "Vår 2026: Nästa försäljning",    icon: "💰" },
     { date: "2026-06-01", text: "Juni 2026: Sommar picnic",       icon: "🫕" }
