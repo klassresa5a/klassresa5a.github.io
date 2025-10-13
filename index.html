@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Klassresa – 5A</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="map-wrap">
+    <h1>Resan av 5A mot skolresan 🛳️</h1>
+
+    <!-- Банка -->
+    <div class="jar-title">💰 Klasskassa</div>
+    <div class="jar-container">
+      <div class="jar-bg">
+        <div class="jar-fill" id="jarFill"></div>
+        <div class="jar-label" id="jarLabel">0 kr</div>
+      </div>
+      <div class="jar-ticks">
+        <span>70 000 kr</span>
+        <span>30 000 kr</span>
+        <span>20 000 kr</span>
+        <span>15 000 kr</span>
+        <span>10 000 kr</span>
+        <span>0 kr</span>
+      </div>
+    </div>
+
+    <!-- Таймлайн -->
+    <div class="timeline" id="timeline">
+      <div class="timeline-fill" id="timelineFill"></div>
+      <div class="timeline-ship" id="timelineShip">🚢</div>
+
+      <div class="event" data-goal="0">
+        <div class="circle">🏁</div>
+        <div class="money-label">0 kr</div>
+        <div class="details"><strong>Start</strong>Vi börjar vår resa! 🚀</div>
+      </div>
+
+      <div class="event" data-goal="10000">
+        <div class="circle">🎃</div>
+        <div class="money-label">10 000 kr</div>
+        <div class="details"><strong>Halloweenfest</strong>Vid 10 000 kr 👻</div>
+      </div>
+
+      <div class="event" data-goal="15000">
+        <div class="circle">🍿</div>
+        <div class="money-label">15 000 kr</div>
+        <div class="details"><strong>Filmkväll</strong>Vid 15 000 kr 🎬</div>
+      </div>
+
+      <div class="event" data-goal="20000">
+        <div class="circle">🍦</div>
+        <div class="money-label">20 000 kr</div>
+        <div class="details"><strong>Glassfest</strong>Vid 20 000 kr 🍨</div>
+      </div>
+
+      <div class="event" data-goal="30000">
+        <div class="circle">🎉</div>
+        <div class="money-label">30 000 kr</div>
+        <div class="details"><strong>Discofest</strong>Vid 30 000 kr 🪩</div>
+      </div>
+
+      <div class="event" data-goal="70000">
+        <div class="circle">🛳️</div>
+        <div class="money-label">70 000 kr</div>
+        <div class="details"><strong>Klassresan</strong>Slutmålet! 🏝️</div>
+      </div>
+    </div>
+
+    <!-- Комmande aktiviteter -->
+    <div class="events">
+      <h2>📅 Kommande aktiviteter</h2>
+      <ul id="activitiesList">
+        <!-- Этот список можно рендерить автоматически из config.js -->
+      </ul>
+    </div>
+
+    <!-- Таблица с вариантами -->
+    <section class="destinations" aria-labelledby="destinations-title">
+      <h2 id="destinations-title">🚌 Möjliga resmål för Klassresa (sorterat efter pris)</h2>
+      <div class="destinations-table-wrap">
+        <table class="destinations-table">
+          <thead>
+            <tr>
+              <th>Resmål</th>
+              <th>Ca pris per elev<br><small>(+ total ca 29 pers)</small></th>
+              <th>Ingår oftast</th>
+              <th>Möjliga extrakostnader</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Skolresa i närområdet (”budgetvariant”)</b></td>
+              <td>300–800 kr<br><small style="color:#5c7390">≈ 8 700–23 200 kr totalt</small></td>
+              <td>Utflykt + heldagsaktiviteter (lekland, badhus, äventyrspark), ingen övernattning</td>
+              <td>Mat, inträden, transport</td>
+            </tr>
+            <tr>
+              <td><b>Stockholm (”hemmaresa”)</b></td>
+              <td>500–1 000 kr<br><small style="color:#5c7390">≈ 14 500–29 000 kr totalt</small></td>
+              <td>Utflykter i stan: Skansen, Gröna Lund, museer; ingen övernattning eller enkel hostel</td>
+              <td>Mat, flera inträden, SL-kort om det behövs</td>
+            </tr>
+            <tr>
+              <td><b>Liseberg (Göteborg)</b></td>
+              <td>1 500–2 000 kr<br><small style="color:#5c7390">≈ 43 500–58 000 kr totalt</small></td>
+              <td>Buss tur & retur, inträde + åkband, ev. 1 natt på vandrarhem/hotell</td>
+              <td>Mat i parken, souvenirer</td>
+            </tr>
+            <tr>
+              <td><b>Åland (Mariehamn)</b></td>
+              <td>1 000–2 000 kr<br><small style="color:#5c7390">≈ 30 000–60 000 kr totalt</small></td>
+              <td>Färja t/r (med övernattning i 3-bäddsrum på Hotell Cikada inkl frukost), ev. hytt, inträde (museum/slott)</td>
+              <td>Mat utöver frukost, buss på Åland, extra aktiviteter (badhus/lekland), fickpengar</td>
+            </tr>
+            <tr>
+              <td><b>High Chaparral (Småland)</b></td>
+              <td>1 800–2 500 kr<br><small style="color:#5c7390">≈ 52 200–72 500 kr totalt</small></td>
+              <td>Buss t/r, inträde till parken, ev. övernattning (camping/stugor)</td>
+              <td>Måltider, extra aktiviteter</td>
+            </tr>
+            <tr>
+              <td><b>Åbo / Helsingfors (Finland, färja)</b></td>
+              <td>2 000–2 800 kr<br><small style="color:#5c7390">≈ 58 000–81 200 kr totalt</small></td>
+              <td>Färja t/r med hytter, buffé frukost/middag, aktiviteter ombord</td>
+              <td>Landaktiviteter, luncher, fickpengar</td>
+            </tr>
+            <tr>
+              <td><b>Gotland (Kneippbyn)</b></td>
+              <td>2 695–3 000 kr<br><small style="color:#5c7390">≈ 72 500–87 000 kr totalt</small></td>
+              <td>Båt t/r, Busstransfer, Boende
+                Två övernattningar i rum/enklare stugor med helpension, Kvällsaktiviteter, Kneippbyns Sommar- & Vattenland, Äventyrsgolf, Avslutning i Visby</td>
+              <td>Fickpengar, extra mat</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Подключение конфигурации и логики -->
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
