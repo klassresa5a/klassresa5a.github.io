@@ -13,10 +13,10 @@ window.KLASSRESA_CONFIG = {
     { date: "2025-09-29", text: "Start försäljning (Kakservice)", icon: "🍪" },
     { date: "2025-10-16", text: "Sista beställningsdag",          icon: "📦" },
     { date: "2025-11-15", text: "Halloweenfest i lokalen",        icon: "🎃" },
-    { date: "Slutet av nov:", text: "Nästa försäljning", icon: "💰" },
+    { date: "Slutet av nov", text: "Nästa försäljning", icon: "💰" },
     { date: "Jan–feb", text: "Filmkväll",    icon: "🎬" },
-    { date: "Vår 2026:", text: "Garage loppis",        icon: "♻️" },
-    { date: "Vår 2026:", text: "Nästa försäljning",    icon: "💰" },
-    { date: "Juni 2026:", text: "Sommar picnic",       icon: "🫕" }
+    { date: "Vår 2026", text: "Garage loppis",        icon: "♻️" },
+    { date: "Vår 2026", text: "Nästa försäljning",    icon: "💰" },
+    { date: "Juni 2026", text: "Sommar picnic",       icon: "🫕" }
   ]
 };
