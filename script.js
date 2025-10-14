@@ -1,4 +1,35 @@
 (() => {
+
+    // === Confetti on first visit or reload ===
+  function fireConfetti() {
+    // веер из 2 залпов
+    const end = Date.now() + 800;
+    (function frame() {
+      confetti({
+        particleCount: 40,
+        spread: 70,
+        origin: { y: 0.2 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  }
+  function showGGBanner() {
+    const el = document.getElementById('gg-banner');
+    if (!el) return;
+    el.hidden = false;
+    // скрыть через 2.2 сек
+    setTimeout(()=> el.classList.add('gg-hide'), 2200);
+    setTimeout(()=> el.hidden = true, 2600);
+  }
+  function confettiOncePerSession() {
+    const KEY = 'gg_confetti_shown';
+    if (sessionStorage.getItem(KEY)) return;
+    sessionStorage.setItem(KEY, '1');
+    fireConfetti();
+    showGGBanner();
+  }
+
+  
   // ===== Чтение конфига =====
   const CFG     = window.KLASSRESA_CONFIG || {};
   const CURRENT = Number(CFG.current ?? 0);
@@ -128,6 +159,7 @@
 
   // ===== Init =====
   function init() {
+    confettiOncePerSession(); //запуск кофетти
     renderActivities();
     updateJar();
     markEvents();
