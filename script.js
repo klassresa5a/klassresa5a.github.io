@@ -18,8 +18,8 @@
     if (!el) return;
     el.hidden = false;
     // скрыть через 2.2 сек
-    setTimeout(()=> el.classList.add('gg-hide'), 2200);
-    setTimeout(()=> el.hidden = true, 2600);
+    setTimeout(()=> el.classList.add('gg-hide'), 3500);
+    setTimeout(()=> el.hidden = true, 4000);
   }
   function confettiOncePerSession() {
     const KEY = 'gg_confetti_shown';
