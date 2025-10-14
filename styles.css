@@ -332,3 +332,15 @@ h1 {
     text-align: center;
   }
 }
+.gg-banner{
+  position: fixed; inset: 20px; /* отступы от всех краёв */
+  margin:auto; height: fit-content; max-width: 600px;
+  background: #1a3d5d; color:#fff; border-radius:14px;
+  padding:16px 20px; text-align:center; font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  z-index: 9999; 
+  animation: gg-in .35s ease-out;
+}
+@keyframes gg-in{from{transform:translateY(-10px);opacity:0}to{transform:none;opacity:1}}
+.gg-hide{animation: gg-out .35s ease-in forwards}
+@keyframes gg-out{to{transform:translateY(-10px);opacity:0}}
