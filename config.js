@@ -11,7 +11,7 @@ window.KLASSRESA_CONFIG = {
   // Комmande aktiviteter: можно редактировать здесь, HTML рендерится автоматически
   activities: [
     { date: "2025-09-29", text: "Start försäljning (Kakservice)", icon: "🍪" },
-    { date: "2025-10-16", text: "Sista beställningsdag",          icon: "📦" },
+    { date: "2025-10-15", text: "Sista beställningsdag",          icon: "📦" },
     { date: "2025-11-15", text: "Halloweenfest i lokalen",        icon: "🎃" },
     { date: "Slutet av nov", text: "Nästa försäljning", icon: "💰" },
     { date: "Jan–feb", text: "Filmkväll",    icon: "🎬" },
