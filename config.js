@@ -23,7 +23,7 @@
       icon: "🎃",
       time: "15:00–18:00",
       place: "Lokalen, Tunnlandsvägen 97",
-      desc: "Entré: 100 kr/barn – det täcker mat, snacks/godis och priser till tävlingarna.\n\nUnder festen delar vi ut pris till den som sålt mest i första omgången.\n\nFöräldrar kan köpa fika på plats, vilket ger extra intäkter till klasskassan."
+      desc: "Entré: 100 kr/barn – det täcker mat, snacks/godis och priser till tävlingarna.\nFöräldrar kan köpa fika på plats, vilket ger extra intäkter till klasskassan."
     },
     {
       label: "Slutet av nov",
