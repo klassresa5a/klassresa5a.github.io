@@ -140,15 +140,30 @@
     </section>
   </div>
 
-  <!-- Подключение конфигурации и логики -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="config.js"></script>
-  <script src="script.js" defer></script>
-<!-- ...весь остальной код страницы... -->
+ <!-- Bra jobbat-banner -->
+<div id="gg-banner" class="gg-banner" hidden>
+  <span>Bra jobbat, bästa 5A! 🎉</span>
+</div>
 
-  <div id="gg-banner" class="gg-banner" hidden>
-    <span>Bra jobbat, bästa 5A! 🎉</span>
+<!-- Modal för aktivitet -->
+<div id="activityModal" class="modal" aria-hidden="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal__close" type="button" data-close aria-label="Stäng">×</button>
+    <h3 id="modalTitle" class="modal__title"></h3>
+    <p class="modal__meta"></p>
+    <p class="modal__desc"></p>
+    <div class="modal__actions">
+      <a class="modal__link" href="#" target="_blank" rel="noopener" hidden>Öppna länk</a>
+      <button class="modal__ics" type="button" hidden>Lägg till i kalendern</button>
+    </div>
   </div>
+</div>
+
+<!-- Скрипты (конфетти + ваш код) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="config.js"></script>
+<script src="script.js" defer></script>
 </body>
 </body>
 </html>
