@@ -332,37 +332,61 @@ h1 {
     text-align: center;
   }
 }
-/* === Bra jobbat banner (festlig & lätt, исправленный) === */
-.gg-banner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(26, 61, 93, 0.85); /* чуть темнее и менее прозрачный */
-  color: #fff;
-  font-size: clamp(1.8rem, 4vw, 2.6rem); /* адаптивный размер */
-  font-weight: 800;
-  text-align: center;
-  padding: 28px 40px;
-  border-radius: 24px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
-  animation: gg-fadein 0.6s ease-out;
-  letter-spacing: 1px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255,255,255,0.6);
+/* === Bra jobbat banner (festlig & lätt, улучшенный) === */
+.gg-banner{
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(26,61,93,.85);
+  color:#fff;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:800;
+  text-align:center;
+  padding:28px 40px;
+  border-radius:24px;
+  box-shadow:0 12px 40px rgba(0,0,0,.4);
+  backdrop-filter:blur(10px);
+  z-index:9999;
+  animation:gg-fadein .6s ease-out;
+  letter-spacing:1px;
+  text-shadow:0 0 10px rgba(255,255,255,.8), 0 0 20px rgba(255,255,255,.6);
+}
+@keyframes gg-fadein{
+  from{opacity:0; transform:translate(-50%,-60%) scale(.9)}
+  to  {opacity:1; transform:translate(-50%,-50%) scale(1)}
+}
+.gg-hide{animation:gg-fadeout .6s ease-in forwards}
+@keyframes gg-fadeout{
+  to{opacity:0; transform:translate(-50%,-40%) scale(.95)}
 }
 
-@keyframes gg-fadein {
-  from { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
-  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+/* === Modal för aktiviteter === */
+.modal{position:fixed; inset:0; display:none; z-index:10000}
+.modal[aria-hidden="false"]{display:block}
+.modal__backdrop{position:absolute; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px)}
+.modal__dialog{
+  position:relative; max-width:540px; margin:8vh auto; background:#fff; color:#163554;
+  border-radius:16px; padding:20px 22px; box-shadow:0 20px 60px rgba(0,0,0,.25);
+  animation:modal-in .25s ease-out
+}
+@keyframes modal-in{from{transform:translateY(6px);opacity:0} to{transform:none;opacity:1}}
+.modal__title{margin:0 0 6px; font-size:20px; color:#1a3d5d}
+.modal__meta{margin:0 0 10px; color:#4b6482; font-size:14px}
+.modal__desc{margin:0 0 14px; color:#234e78}
+.modal__actions{display:flex; gap:10px}
+.modal__link{
+  display:inline-block; padding:8px 12px; background:#1a3d5d; color:#fff; border-radius:10px; text-decoration:none
+}
+.modal__link:hover{background:#234e78}
+.modal__ics{
+  padding:8px 12px; border:none; border-radius:10px; background:#2193b0; color:#fff; cursor:pointer
+}
+.modal__ics:hover{background:#1a86a5}
+.modal__close{
+  position:absolute; top:8px; right:10px; border:none; background:transparent;
+  font-size:22px; line-height:1; color:#234e78; cursor:pointer
 }
 
-.gg-hide {
-  animation: gg-fadeout 0.6s ease-in forwards;
-}
-
-@keyframes gg-fadeout {
-  to { opacity: 0; transform: translate(-50%, -40%) scale(0.95); }
-}
-
+/* Сделаем элементы списка кликабельными/реактивными */
+.events li{cursor:pointer; transition:background .15s ease}
+.events li:hover{background:#eef5fb}
