@@ -1,22 +1,54 @@
 // === KLASSRESA 5A – KONFIGURATION ===
-window.KLASSRESA_CONFIG = {
-  // Текущая сумма и цель
-  current: 17259,
+ window.KLASSRESA_CONFIG = {
   goal: 70000,
-
-  // Деления банки (снизу вверх). Должны логически соответствовать меткам справа от банки.
-  // Пример: 0, 10k, 15k, 20k, 30k, 70k
+  current: 17358,
   ticks: [0, 10000, 15000, 20000, 30000, 70000],
-
-  // Комmande aktiviteter: можно редактировать здесь, HTML рендерится автоматически
   activities: [
-    { date: "2025-09-29", text: "Start försäljning (Kakservice)", icon: "🍪" },
-    { date: "2025-10-15", text: "Sista beställningsdag",          icon: "📦" },
-    { date: "2025-11-15", text: "Halloweenfest i lokalen",        icon: "🎃" },
-    { date: "Slutet av nov", text: "Nästa försäljning", icon: "💰" },
-    { date: "Jan–feb", text: "Filmkväll",    icon: "🎬" },
-    { date: "Mars 2026", text: "Nästa försäljning",    icon: "💰" },
-    { date: "Mars-apr 2026", text: "Garage loppis",        icon: "♻️" },
-    { date: "Juni 2026", text: "Sommar picnic",       icon: "🫕" }
+    {
+      date: "2025-09-29",
+      label: "29 sep",
+      text: "Start försäljning (Kakservice)",
+      icon: "🍪"
+    },
+    {
+      date: "2025-10-16",
+      label: "16 okt",
+      text: "Sista beställningsdag",
+      icon: "📦"
+    },
+    {
+      date: "2025-11-15",
+      label: "15 nov",
+      text: "Halloweenfest i lokalen",
+      icon: "🎃",
+      time: "15:00–18:00",
+      place: "Lokalen, Tunnlandsvägen 97",
+      desc: "Entré: 100 kr/barn – det täcker mat, snacks/godis och priser till tävlingarna.\n\nUnder festen delar vi ut pris till den som sålt mest i första omgången.\n\nFöräldrar kan köpa fika på plats, vilket ger extra intäkter till klasskassan."
+    },
+    {
+      label: "Slutet av nov",
+      text: "Nästa försäljning",
+      icon: "💰"
+    },
+    {
+      label: "Januari-februari",
+      text: "Filmkväll",
+      icon: "🎬"
+    },
+    {
+      label: "Vår 2026",
+      text: "Garage loppis",
+      icon: "♻️"
+    },
+    {
+      label: "Vår 2026",
+      text: "Nästa försäljning",
+      icon: "💰"
+    },
+    {
+      label: "Juni 2026",
+      text: "Sommar picnic",
+      icon: "🫕"
+    }
   ]
 };
