@@ -390,3 +390,44 @@ h1 {
 /* Сделаем элементы списка кликабельными/реактивными */
 .events li{cursor:pointer; transition:background .15s ease}
 .events li:hover{background:#eef5fb}
+
+
+/* === Aktuellt === */
+.aktuellt{margin-top:28px}
+.aktuellt h2{
+  font-size:20px; color:#1a3d5d; text-align:center; margin-bottom:14px;
+}
+.aktuellt__grid{
+  display:grid; gap:14px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px){
+  .aktuellt__grid{ grid-template-columns: 1fr 1fr; }
+}
+.card{
+  border:1px solid #d6e4f0; border-radius:14px; background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.06); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.card__media{
+  position:relative; aspect-ratio: 16/9; background:#eef5fb; overflow:hidden;
+}
+.card__media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.card__body{ padding:12px 14px; color:#163554; }
+.card__title{ margin:0 0 6px; font-weight:800; font-size:16px; color:#1a3d5d; }
+.card__meta{ font-size:12px; color:#5c7390; margin-bottom:6px; }
+.card__text{ font-size:14px; color:#234e78; }
+.card__actions{
+  display:flex; gap:10px; padding:12px 14px; border-top:1px solid #e8f0f7; margin-top:auto;
+}
+.btn{
+  display:inline-block; padding:8px 12px; border-radius:10px;
+  text-decoration:none; border:1px solid #1a3d5d; color:#1a3d5d; background:#fff;
+}
+.btn:hover{ background:#1a3d5d; color:#fff; }
+.btn-primary{
+  background:#2193b0; color:#fff; border-color:#2193b0;
+}
+.btn-primary:hover{ background:#1a86a5; }
