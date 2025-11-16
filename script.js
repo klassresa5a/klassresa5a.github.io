@@ -352,10 +352,10 @@ function renderAktuellt(){
   function init() {
     confettiOncePerSession();
     renderActivities();
-    renderAktuellt();  
     updateJar();
     markEvents();
     updateTimeline();
+        renderAktuellt();
   }
 
   document.addEventListener("DOMContentLoaded", init);
