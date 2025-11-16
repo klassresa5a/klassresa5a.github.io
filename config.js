@@ -62,7 +62,7 @@
        Tack till alla som kom!",
       albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6",
       // Обложка: можно поставить свою картинку/скриншот альбома
-      coverUrl: "https://klassresa5a.github.io/assets/halloween-cover.jpg",
+      coverUrl: "https://klassresa5a.github.io/halloween.jpg",
       cta: "Öppna albumet"
     },
   ]
