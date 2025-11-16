@@ -305,6 +305,7 @@
   function init() {
     confettiOncePerSession();
     renderActivities();
+    renderAktuellt();  
     updateJar();
     markEvents();
     updateTimeline();
