@@ -313,3 +313,50 @@
   document.addEventListener("DOMContentLoaded", init);
   window.addEventListener("resize", updateTimeline);
 })();
+
+// ===== AKTUELT =====
+function renderAktuellt(){
+  const wrap = document.getElementById('aktuelltList');
+  if(!wrap) return;
+  const items = (window.KLASSRESA_CONFIG && Array.isArray(window.KLASSRESA_CONFIG.aktuellt))
+    ? window.KLASSRESA_CONFIG.aktuellt.slice()
+    : [];
+  if(items.length === 0){ wrap.innerHTML = '<p style="text-align:center;color:#5c7390">Inget nytt just nu.</p>'; return; }
+
+  // отсортируем: новее выше
+  items.sort((a,b) => String(b.date||'').localeCompare(String(a.date||'')));
+
+  const fmtDate = ds => {
+    if(!ds) return '';
+    const d = new Date(ds);
+    if(isNaN(d)) return ds; // если это уже "Vår 2026" и т.п.
+    return d.toLocaleDateString('sv-SE', { day:'numeric', month:'short', year:'numeric' });
+  };
+
+  wrap.innerHTML = items.map(item => {
+    const isAlbum = item.type === 'album';
+    const dateStr = fmtDate(item.date);
+    const media = isAlbum && item.coverUrl
+      ? `<div class="card__media"><img src="${item.coverUrl}" alt="Omslagsbild: ${item.title||'Album'}"></div>`
+      : `<div class="card__media"></div>`;
+
+    const cta = (isAlbum && item.albumUrl)
+      ? `<a class="btn btn-primary" href="${item.albumUrl}" target="_blank" rel="noopener">🖼️ ${item.cta || 'Öppna albumet'}</a>`
+      : '';
+
+    return `
+      <article class="card" data-id="${item.id||''}">
+        ${media}
+        <div class="card__body">
+          <h3 class="card__title">${item.title || (isAlbum ? 'Bildalbum' : 'Aktuellt')}</h3>
+          <div class="card__meta">${dateStr}</div>
+          <div class="card__text">${item.summary || ''}</div>
+        </div>
+        <div class="card__actions">
+          ${cta}
+          ${item.link ? `<a class="btn" href="${item.link}" target="_blank" rel="noopener">Öppna länk</a>` : ''}
+        </div>
+      </article>
+    `;
+  }).join('');
+}
