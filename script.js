@@ -299,23 +299,7 @@
     document.addEventListener("keydown", escClose);
   }
 
-  // =========================================================
-  //  F) INIT
-  // =========================================================
-  function init() {
-    confettiOncePerSession();
-    renderActivities();
-    renderAktuellt();  
-    updateJar();
-    markEvents();
-    updateTimeline();
-  }
-
-  document.addEventListener("DOMContentLoaded", init);
-  window.addEventListener("resize", updateTimeline);
-})();
-
-// ===== AKTUELT =====
+  // ===== AKTUELT =====
 function renderAktuellt(){
   const wrap = document.getElementById('aktuelltList');
   if(!wrap) return;
@@ -361,3 +345,19 @@ function renderAktuellt(){
     `;
   }).join('');
 }
+
+  // =========================================================
+  //  F) INIT
+  // =========================================================
+  function init() {
+    confettiOncePerSession();
+    renderActivities();
+    renderAktuellt();  
+    updateJar();
+    markEvents();
+    updateTimeline();
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+  window.addEventListener("resize", updateTimeline);
+})();
