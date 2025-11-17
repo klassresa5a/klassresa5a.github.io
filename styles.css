@@ -387,18 +387,20 @@ h1 {
   font-size:22px; line-height:1; color:#234e78; cursor:pointer
 }
 
-/* ===== Aktuellt (nyheter) ===== */
+/* ===== Aktuellt (nyheter) – i samma stil som sidan ===== */
 .news {
   margin-top: 24px;
-  margin-bottom: 16px;
-  padding-top: 10px;
-  border-top: 1px solid #d6e4f0;
+  margin-bottom: 20px;
+  padding: 16px 16px 12px;
+  background: #f9fcff;
+  border: 1px solid #d6e4f0;   /* 🔹 чёткий кант вокруг блока */
+  border-radius: 14px;
 }
 
 .news h2 {
   font-size: 20px;
   color: #1a3d5d;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   text-align: center;
 }
 
@@ -412,18 +414,30 @@ h1 {
 }
 
 .news-item {
-  background: #fffaf4;
-  border: 1px solid #f3dcc0;
+  background: #ffffff;
+  border: 1px solid #d6e4f0;      /* 🔹 кант у каждой новости */
   border-radius: 10px;
-  padding: 10px 14px;
+  padding: 10px 12px;
   font-size: 15px;
   color: #333;
+  position: relative;
+  overflow: hidden;
 }
 
+/* тонкий цветной штрих слева, как акцент */
+.news-item::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #2193b0;
+}
+
+/* шапка: дата + заголовок */
 .news-header {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   align-items: baseline;
   margin-bottom: 4px;
 }
@@ -457,12 +471,19 @@ h1 {
   text-decoration: underline;
 }
 
+/* текст, если новостей пока нет */
 .news-empty {
   font-size: 14px;
   color: #5c7390;
   text-align: center;
-  padding: 8px 0;
+  padding: 6px 0 2px;
 }
+
+/* небольшой ховер, чтобы чувствовалось кликабельно (если потом сделаешь клики) */
+.news-item:hover {
+  background: #f4f9ff;
+}
+
 
 /* Сделаем элементы списка кликабельными/реактивными */
 .events li{cursor:pointer; transition:background .15s ease}
