@@ -14,6 +14,9 @@
   const events       = Array.from(document.querySelectorAll(".event"));
   const activitiesWrap = document.querySelector(".events");
   let   activitiesList = document.getElementById("activitiesList");
+   // 🔽 НОВОЕ: DOM для Aktuellt
+  const newsWrap = document.querySelector(".news");
+  let   newsList = document.getElementById("newsList");
 
   const fmt = n => new Intl.NumberFormat("sv-SE").format(n) + " kr";
 
@@ -161,6 +164,59 @@
   }
 
   // =========================================================
+  //  G) AKTUELLA NYHETER (Aktuellt)
+  // =========================================================
+  function ensureNewsListEl() {
+    if (!newsList && newsWrap) {
+      newsList = document.createElement("ul");
+      newsList.id = "newsList";
+      newsWrap.appendChild(newsList);
+    }
+    return newsList;
+  }
+
+  function renderNews() {
+    const list = ensureNewsListEl();
+    if (!list) return;
+
+    const items = Array.isArray(CFG.news) ? CFG.news.slice() : [];
+
+    // Если пока нет новостей – покажем пустой текст
+    if (items.length === 0) {
+      list.innerHTML = '<li class="news-empty">Inga nyheter ännu.</li>';
+      return;
+    }
+
+    // Сортировка: свежие новости сверху (по дате, если есть)
+    items.sort((a, b) => {
+      if (!a.date && !b.date) return 0;
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return b.date.localeCompare(a.date); // YYYY-MM-DD
+    });
+
+    list.innerHTML = items.map(item => {
+      const dateLabel = item.date ? formatSvDate(item.date) : "";
+      const title = item.title || "";
+      const text = item.text || "";
+      const albumLink = item.albumUrl
+        ? `<p class="news-link"><a href="${item.albumUrl}" target="_blank" rel="noopener">📷 Se fotoalbumet här</a></p>`
+        : "";
+
+      return `
+        <li class="news-item">
+          <div class="news-header">
+            ${dateLabel ? `<span class="news-date">${dateLabel}</span>` : ""}
+            ${title ? `<h3 class="news-title">${title}</h3>` : ""}
+          </div>
+          ${text ? `<p class="news-text">${text}</p>` : ""}
+          ${albumLink}
+        </li>
+      `;
+    }).join("");
+  }
+  
+  // =========================================================
   //  E) MODAL + ICS GENERATION
   // =========================================================
   // ---- ICS helpers ----
@@ -304,6 +360,7 @@
   // =========================================================
   function init() {
     confettiOncePerSession();
+    renderNews();  
     renderActivities();
     updateJar();
     markEvents();
