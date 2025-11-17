@@ -387,6 +387,83 @@ h1 {
   font-size:22px; line-height:1; color:#234e78; cursor:pointer
 }
 
+/* ===== Aktuellt (nyheter) ===== */
+.news {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  padding-top: 10px;
+  border-top: 1px solid #d6e4f0;
+}
+
+.news h2 {
+  font-size: 20px;
+  color: #1a3d5d;
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.news ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.news-item {
+  background: #fffaf4;
+  border: 1px solid #f3dcc0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #333;
+}
+
+.news-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.news-date {
+  font-size: 13px;
+  color: #5c7390;
+  font-weight: 600;
+}
+
+.news-title {
+  margin: 0;
+  font-size: 16px;
+  color: #1a3d5d;
+  font-weight: 700;
+}
+
+.news-text {
+  margin: 4px 0 4px;
+  color: #234e78;
+}
+
+.news-link a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1a3d5d;
+  font-weight: 600;
+}
+
+.news-link a:hover {
+  text-decoration: underline;
+}
+
+.news-empty {
+  font-size: 14px;
+  color: #5c7390;
+  text-align: center;
+  padding: 8px 0;
+}
+
 /* Сделаем элементы списка кликабельными/реактивными */
 .events li{cursor:pointer; transition:background .15s ease}
 .events li:hover{background:#eef5fb}
