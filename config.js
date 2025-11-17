@@ -51,19 +51,5 @@
       text: "Sommar picnic",
       icon: "🫕"
     }
-  ],
-  aktuellt: [
-    {
-      id: "alb-halloween",
-      type: "album",
-      date: "2025-11-15",
-      title: "Halloweenfest – bildalbum",
-      summary: "Se bilder från vår Halloweenfest i lokalen.
-       Tack till alla som kom!",
-      albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6",
-      // Обложка: можно поставить свою картинку/скриншот альбома
-      coverUrl: "https://klassresa5a.github.io/halloween.jpg",
-      cta: "Öppna albumet"
-    },
   ]
 };
