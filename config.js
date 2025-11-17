@@ -59,7 +59,7 @@ window.KLASSRESA_CONFIG = {
       date: "2025-11-16",
       title: "Halloweenfesten 15 november – tack alla!",
       text: "Vilken fantastiskt rolig Halloweenfest vi hade i lokalen! Tack till alla barn och föräldrar som kom, hjälpte till och bidrog till klasskassan.",
-      albumUrl: "https://DIN-LÄNK-TILL-ALBUMET-HÄR" // 👈 сюда вставь реальную ссылку
+      albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" // 👈 сюда вставь реальную ссылку
     }
   ]
 };
