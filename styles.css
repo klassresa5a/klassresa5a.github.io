@@ -404,6 +404,14 @@ h1 {
   text-align: center;
 }
 
+.news-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #5c7390;
+  margin: -6px 0 12px; /* чуть ближе к заголовку */
+  font-style: italic;
+}
+
 .news ul {
   list-style: none;
   margin: 0;
