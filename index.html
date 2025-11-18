@@ -167,6 +167,23 @@
   </div>
 </div>
 
+<!-- Modal för fotoalbum-lösenord -->
+<div id="albumPasswordModal" class="modal" aria-hidden="true">
+  <div class="modal__backdrop" data-close></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="albumModalTitle">
+    <button class="modal__close" type="button" data-close aria-label="Stäng">×</button>
+    <h3 id="albumModalTitle" class="modal__title">🔒 Fotoalbum – lösenord</h3>
+    <p class="modal__desc">Skriv lösenordet för att öppna fotoalbumet.</p>
+
+    <input id="albumPwdInput" class="modal__input" type="password" placeholder="Lösenord">
+    <p id="albumPwdError" class="modal__error" aria-live="polite" hidden>Fel lösenord. Försök igen.</p>
+
+    <div class="modal__actions">
+      <button id="albumPwdBtn" class="modal__ics" type="button">Öppna album</button>
+    </div>
+  </div>
+</div>
+
 <!-- Скрипты (конфетти + ваш код) -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="config.js"></script>
