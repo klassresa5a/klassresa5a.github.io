@@ -63,8 +63,8 @@
   function updateJar() {
     let p = segmentedPercent(CURRENT);
     if (CURRENT > 0 && p < 0.06) p = 0.06; // чуть видимой заливки в начале
-    jarFill.style.height = (p * 100) + "%";
-    jarLabel.textContent = fmt(CURRENT);
+    if (jarFill) jarFill.style.height = (p * 100) + "%";
+    if (jarLabel) jarLabel.textContent = fmt(CURRENT);
   }
 
   // =========================================================
@@ -103,9 +103,11 @@
     y = Math.max(0, Math.min(y, tlRect.height)); // границы таймлайна
 
     // заливка от самого верха до кораблика
-    timelineFill.style.top    = "0px";
-    timelineFill.style.height = y + "px";
-    timelineShip.style.top    = y + "px";
+    if (timelineFill) {
+      timelineFill.style.top    = "0px";
+      timelineFill.style.height = y + "px";
+    }
+    if (timelineShip) timelineShip.style.top = y + "px";
   }
 
   // =========================================================
@@ -217,16 +219,19 @@
         </li>
       `;
     }).join("");
-  }
-list.querySelectorAll(".news-album-link").forEach(a => {
+
+    // Привязываем обработчики к ссылкам альбомов — ОБЯЗАТЕЛЬНО внутри renderNews,
+    // когда list уже существует и имеет содержимое.
+    list.querySelectorAll(".news-album-link").forEach(a => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         const url = a.getAttribute("data-album-url");
         openAlbumPasswordModal(url);
       });
     });
+  }
 
-// =========================================================
+  // =========================================================
   //  H) FOTOALBUM-LÖSENORD (modal)
   // =========================================================
   const ALBUM_PASSWORD = "halloween2025"; // <-- придумываешь свой пароль
