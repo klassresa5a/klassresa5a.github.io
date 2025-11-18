@@ -200,9 +200,12 @@
       const title = item.title || "";
       const text = item.text || "";
       const albumLink = item.albumUrl
-        ? `<p class="news-link"><a href="${item.albumUrl}" target="_blank" rel="noopener">📷 Se fotoalbumet här</a></p>`
-        : "";
-
+  ? `<p class="news-link">
+       <a href="#"
+          class="news-album-link"
+          data-album-url="${item.albumUrl}">📷 Se fotoalbumet här</a>
+     </p>`
+  : "";
       return `
         <li class="news-item">
           <div class="news-header">
@@ -215,6 +218,79 @@
       `;
     }).join("");
   }
+list.querySelectorAll(".news-album-link").forEach(a => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const url = a.getAttribute("data-album-url");
+        openAlbumPasswordModal(url);
+      });
+    });
+
+// =========================================================
+  //  H) FOTOALBUM-LÖSENORD (modal)
+  // =========================================================
+  const ALBUM_PASSWORD = "halloween2025"; // <-- придумываешь свой пароль
+  let currentAlbumUrl = null;
+
+  function openAlbumPasswordModal(url) {
+    currentAlbumUrl = url;
+
+    const modal = document.getElementById("albumPasswordModal");
+    if (!modal) return;
+
+    const input = modal.querySelector("#albumPwdInput");
+    const error = modal.querySelector("#albumPwdError");
+    const btn   = modal.querySelector("#albumPwdBtn");
+
+    // сброс состояния
+    error.hidden = true;
+    input.value = "";
+
+    const close = () => {
+      modal.setAttribute("aria-hidden", "true");
+      btn.onclick = null;
+      input.removeEventListener("keydown", onKeydown);
+      document.removeEventListener("keydown", onEsc);
+    };
+
+    function onEsc(e) {
+      if (e.key === "Escape") {
+        close();
+      }
+    }
+
+    function onKeydown(e) {
+      if (e.key === "Enter") {
+        submit();
+      }
+    }
+
+    function submit() {
+      if (input.value === ALBUM_PASSWORD) {
+        close();
+        // открываем альбом в новой вкладке
+        window.open(currentAlbumUrl, "_blank", "noopener");
+      } else {
+        error.hidden = false;
+      }
+    }
+
+    btn.onclick = submit;
+    input.addEventListener("keydown", onKeydown);
+
+    // закрытие по крестику / клику по фону
+    modal.querySelectorAll("[data-close]").forEach(el => {
+      el.onclick = close;
+    });
+
+    document.addEventListener("keydown", onEsc);
+
+    modal.setAttribute("aria-hidden", "false");
+
+    // фокус в поле пароля
+    setTimeout(() => input.focus(), 50);
+  }
+
   
   // =========================================================
   //  E) MODAL + ICS GENERATION
