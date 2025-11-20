@@ -1,7 +1,7 @@
 // === KLASSRESA 5A – KONFIGURATION ===
 window.KLASSRESA_CONFIG = {
   goal: 70000,
-  current: 17358,
+  current: 18200,
   ticks: [0, 10000, 15000, 20000, 30000, 70000],
   activities: [
     {
