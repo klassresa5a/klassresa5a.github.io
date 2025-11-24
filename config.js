@@ -27,11 +27,6 @@ window.KLASSRESA_CONFIG = {
       link: "https://forms.gle/Vs9YYu265sg8CKM36"
     },
     {
-      label: "Slutet av nov",
-      text: "Nästa försäljning",
-      icon: "💰"
-    },
-    {
       label: "Januari-februari",
       text: "Filmkväll",
       icon: "🎬"
