@@ -35,7 +35,7 @@ window.KLASSRESA_CONFIG = {
       time: "15:30–18:00",
       place: "Lokalen, Tunnlandsvägen 97",
       desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
-      link: "https://forms.gle/Vs9YYu265sg8CKM36"
+      link: "https://forms.gle/i9yKtNpYMkemE9w66"
     },
     {
       label: "Vår 2026",
