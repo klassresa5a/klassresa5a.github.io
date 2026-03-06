@@ -62,4 +62,4 @@ window.KLASSRESA_CONFIG = {
     /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
   }
 ]
-};;
+};
