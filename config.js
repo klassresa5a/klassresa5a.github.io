@@ -30,7 +30,7 @@ window.KLASSRESA_CONFIG = {
       date: "2026-03-22",
       label: "22 mars",
       text: "Filmkväll",
-      icon: "🎬"
+      icon: "🎬",
       time: "15:30–18:00",
       place: "Lokalen, Tunnlandsvägen 97",
       desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
