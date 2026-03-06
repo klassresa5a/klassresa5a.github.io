@@ -56,10 +56,10 @@ window.KLASSRESA_CONFIG = {
   // 🔽 НОВОЕ: блок новостей
   news: [
     {
-      date: "2025-11-16",
-      title: "Halloweenfesten 15 november – tack alla!",
-      text: "Vilken fantastiskt rolig Halloweenfest vi hade i lokalen! Tack till alla barn och föräldrar som kom, hjälpte till och bidrog till klasskassan.",
-      albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" // 👈 сюда вставь реальную ссылку
+      date: "2026-03-22",
+      title: "Filmkväll – "A Minecraft Movie"",
+      text: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
+      //albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" // 👈 сюда вставь реальную ссылку
     }
   ]
 };
