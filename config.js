@@ -27,14 +27,14 @@ window.KLASSRESA_CONFIG = {
       link: "https://forms.gle/Vs9YYu265sg8CKM36"
     },
     {
-      date: "2026-03-22",
+      //date: "2026-03-22",
       label: "22 mars",
       text: "Filmkväll",
-      icon: "🎬",
-      time: "15:30–18:00",
-      place: "Lokalen, Tunnlandsvägen 97",
-      desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
-      link: "https://forms.gle/Vs9YYu265sg8CKM36"
+      icon: "🎬"
+      //time: "15:30–18:00",
+      //place: "Lokalen, Tunnlandsvägen 97",
+      //desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
+      //link: "https://forms.gle/Vs9YYu265sg8CKM36"
     },
     {
       label: "Vår 2026",
