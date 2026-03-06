@@ -55,11 +55,11 @@ window.KLASSRESA_CONFIG = {
   ],
 
   aktuellt: [
-    {
-      date: "2026-03-22",
-      title: 'Filmkväll – "A Minecraft Movie"',
-      summary: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan."
-      /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
-    }
-  ]
+  {
+    date: "2026-03-22",
+    title: 'Filmkväll – "A Minecraft Movie"',
+    summary: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
+    /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
+  }
+]
 };;
