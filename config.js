@@ -3,6 +3,7 @@ window.KLASSRESA_CONFIG = {
   goal: 70000,
   current: 18200,
   ticks: [0, 10000, 15000, 20000, 30000, 70000],
+
   activities: [
     {
       date: "2025-09-29",
@@ -27,14 +28,14 @@ window.KLASSRESA_CONFIG = {
       link: "https://forms.gle/Vs9YYu265sg8CKM36"
     },
     {
-      //date: "2026-03-22",
+      date: "2026-03-22",
       label: "22 mars",
       text: "Filmkväll",
-      icon: "🎬"
-      //time: "15:30–18:00",
-      //place: "Lokalen, Tunnlandsvägen 97",
-      //desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
-      //link: "https://forms.gle/Vs9YYu265sg8CKM36"
+      icon: "🎬",
+      time: "15:30–18:00",
+      place: "Lokalen, Tunnlandsvägen 97",
+      desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
+      link: "https://forms.gle/Vs9YYu265sg8CKM36"
     },
     {
       label: "Vår 2026",
@@ -53,13 +54,12 @@ window.KLASSRESA_CONFIG = {
     }
   ],
 
-  // 🔽 НОВОЕ: блок новостей
-  news: [
+  aktuellt: [
     {
       date: "2026-03-22",
       title: 'Filmkväll – "A Minecraft Movie"',
-      text: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
-      //albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" // 👈 сюда вставь реальную ссылку
+      summary: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan."
+      /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
     }
   ]
-};
+};;
