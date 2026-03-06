@@ -54,7 +54,7 @@ window.KLASSRESA_CONFIG = {
     }
   ],
 
-  aktuellt: [
+  news: [
   {
     date: "2026-03-22",
     title: 'Filmkväll – "A Minecraft Movie"',
