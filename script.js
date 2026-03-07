@@ -177,59 +177,124 @@
     return newsList;
   }
 
-  function renderNews() {
-    const list = ensureNewsListEl();
-    if (!list) return;
+function renderNews() {
+  const list = ensureNewsListEl();
+  if (!list) return;
 
-    const items = Array.isArray(CFG.news) ? CFG.news.slice() : [];
+  const items = Array.isArray(CFG.news) ? CFG.news.slice() : [];
 
-    // Если пока нет новостей – покажем пустой текст
-    if (items.length === 0) {
-      list.innerHTML = '<li class="news-empty">Inga nyheter ännu.</li>';
-      return;
-    }
-
-    // Сортировка: свежие новости сверху (по дате, если есть)
-    items.sort((a, b) => {
-      if (!a.date && !b.date) return 0;
-      if (!a.date) return 1;
-      if (!b.date) return -1;
-      return b.date.localeCompare(a.date); // YYYY-MM-DD
-    });
-
-    list.innerHTML = items.map(item => {
-      const dateLabel = item.date ? formatSvDate(item.date) : "";
-      const title = item.title || "";
-      const text = item.text || "";
-      const albumLink = item.albumUrl
-  ? `<p class="news-link">
-       <a href="#"
-          class="news-album-link"
-          data-album-url="${item.albumUrl}">📷 Se fotoalbumet här</a>
-     </p>`
-  : "";
-      return `
-        <li class="news-item">
-          <div class="news-header">
-            ${dateLabel ? `<span class="news-date">${dateLabel}</span>` : ""}
-            ${title ? `<h3 class="news-title">${title}</h3>` : ""}
-          </div>
-          ${text ? `<p class="news-text">${text}</p>` : ""}
-          ${albumLink}
-        </li>
-      `;
-    }).join("");
-
-    // Привязываем обработчики к ссылкам альбомов — ОБЯЗАТЕЛЬНО внутри renderNews,
-    // когда list уже существует и имеет содержимое.
-    list.querySelectorAll(".news-album-link").forEach(a => {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        const url = a.getAttribute("data-album-url");
-        openAlbumPasswordModal(url);
-      });
-    });
+  if (items.length === 0) {
+    list.innerHTML = '<li class="news-empty">Inga nyheter ännu.</li>';
+    return;
   }
+
+  items.sort((a, b) => {
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return b.date.localeCompare(a.date);
+  });
+
+  list.innerHTML = items.map((item, index) => {
+    const dateLabel = item.date ? formatSvDate(item.date) : "";
+    const title = item.title || "";
+    const text = item.text || "";
+
+    const albumLink = item.albumUrl
+      ? `<p class="news-link">
+           <a href="#"
+              class="news-album-link"
+              data-album-url="${item.albumUrl}">📷 Se fotoalbumet här</a>
+         </p>`
+      : "";
+
+    const showSignup = !!item.link;
+    const showIcs = !!item.date && !isNaN(new Date(item.date));
+
+    return `
+      <li class="news-item" data-news-idx="${index}">
+        <div class="news-header">
+          ${dateLabel ? `<span class="news-date">${dateLabel}</span>` : ""}
+          ${title ? `<h3 class="news-title">${title}</h3>` : ""}
+        </div>
+        ${text ? `<p class="news-text">${text}</p>` : ""}
+        ${albumLink}
+
+        <div class="modal__actions">
+          <a
+            class="modal__link"
+            href="${showSignup ? item.link : '#'}"
+            target="_blank"
+            rel="noopener"
+            ${showSignup ? "" : "hidden"}
+          >
+            Anmäl dig här
+          </a>
+          <button
+            class="modal__ics"
+            type="button"
+            ${showIcs ? "" : "hidden"}
+          >
+            Lägg till i kalendern
+          </button>
+        </div>
+      </li>
+    `;
+  }).join("");
+
+  // album links
+  list.querySelectorAll(".news-album-link").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const url = a.getAttribute("data-album-url");
+      openAlbumPasswordModal(url);
+    });
+  });
+
+  // ICS buttons in Aktuellt
+  list.querySelectorAll(".news-item").forEach((newsEl) => {
+    const idx = Number(newsEl.getAttribute("data-news-idx"));
+    const item = items[idx];
+    const icsBtn = newsEl.querySelector(".modal__ics");
+
+    if (!icsBtn) return;
+
+    icsBtn.onclick = () => {
+      const baseDate = new Date(item.date);
+      const tr = parseTimeRange(item.time || '');
+
+      let allDay = false;
+      let start = new Date(baseDate);
+      let end   = new Date(baseDate);
+
+      if (tr && tr.start) {
+        start.setHours(tr.start.h, tr.start.m, 0, 0);
+        if (tr.end) end.setHours(tr.end.h, tr.end.m, 0, 0);
+        else end = new Date(start.getTime() + 90 * 60 * 1000);
+      } else {
+        allDay = true;
+      }
+
+      const title = item.title || 'Aktivitet';
+      const ics = makeICS({
+        title,
+        desc: item.desc || item.text || '',
+        location: item.place || '',
+        url: item.link || '',
+        start,
+        end,
+        allDay
+      });
+
+      const safeName = title
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9\-]/g, '');
+
+      downloadICS((safeName || 'aktivitet') + '.ics', ics);
+    };
+  });
+}
 
   // =========================================================
   //  H) FOTOALBUM-LÖSENORD (modal)
