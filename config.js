@@ -32,7 +32,7 @@ window.KLASSRESA_CONFIG = {
     label: "14 mars",
     text: "Fikakassan försäljning",
     icon: "💰",
-    time: "14 mars - 25 mars",
+    time: "14 mars - 24 mars",
     desc: "",
     link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
   },
