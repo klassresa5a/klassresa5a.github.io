@@ -81,7 +81,7 @@ window.KLASSRESA_CONFIG = {
   {
     date: "2026-03-22",
     title: 'Filmkväll – "A Minecraft Movie" plats: "Lokalen, Tunnlandsvägen 97"',
-    text: "Den 22 februari ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
+    text: "Den 22 mars ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
     time: "15:30–18:00",
     place: "Lokalen, Tunnlandsvägen 97",
     desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
