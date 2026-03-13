@@ -27,6 +27,15 @@ window.KLASSRESA_CONFIG = {
     desc: "Entré: 100 kr/barn; 50 kr/syskon – det täcker mat, snacks/godis och priser till tävlingarna.\nFöräldrar kan köpa fika på plats, vilket ger extra intäkter till klasskassan.",
     link: "https://forms.gle/Vs9YYu265sg8CKM36"
   },
+     {
+    date: "2026-03-14",
+    label: "14 mars",
+    text: "Fikakassan försäljning",
+    icon: "💰",
+    time: "14 mars - 25 mars",
+    desc: "",
+    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
+  },
   {
     date: "2026-03-22",
     label: "22 mars",
@@ -36,15 +45,6 @@ window.KLASSRESA_CONFIG = {
     place: "Lokalen, Tunnlandsvägen 97",
     desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
     link: "https://forms.gle/i9yKtNpYMkemE9w66"
-  },
-  {
-    date: "2026-03-14",
-    label: "14 mars",
-    text: "Fikakassan försäljning",
-    icon: "💰",
-    time: "14 mars - 25 mars",
-    desc: "",
-    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
   },
   {
     date: "2026-04-18",
@@ -70,8 +70,16 @@ window.KLASSRESA_CONFIG = {
 
 
  news: [
+     {
+    date: "2026-03-14",
+    title: 'Fikakassan försäljning',
+    text: "",
+    time: "14 mars - 25 mars",
+    desc: "",
+    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
+  },
   {
-    date: "2026-02-22",
+    date: "2026-03-22",
     title: 'Filmkväll – "A Minecraft Movie" plats: "Lokalen, Tunnlandsvägen 97"',
     text: "Den 22 februari ordnar vi en mysig filmkväll med film, popcorn och chips. Kvällen är en belöning till eleverna för deras fantastiska insats i försäljningen och insamlingen till klassresan.",
     time: "15:30–18:00",
@@ -79,14 +87,6 @@ window.KLASSRESA_CONFIG = {
     desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
     link: "https://forms.gle/i9yKtNpYMkemE9w66"
     /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
-  },
-  {
-    date: "2026-03-14",
-    title: 'Fikakassan försäljning',
-    text: "",
-    time: "14 mars - 25 mars",
-    desc: "",
-    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
   },
   {
     date: "2026-04-28",
