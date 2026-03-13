@@ -38,14 +38,30 @@ window.KLASSRESA_CONFIG = {
       link: "https://forms.gle/i9yKtNpYMkemE9w66"
     },
     {
-      label: "Vår 2026",
-      text: "Garage loppis",
-      icon: "♻️"
+      date: "2026-03-14",
+      label: "14 mars",
+      text: "Fikakassan försäljning",
+      icon: "💰",
+      time: "14 mars - 25 mars",
+      desc: "",
+      link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
+    },
+    {
+      date: "2026-04-18",
+      label: "18 april",
+      text: "Bromma Vårstädning",
+      icon: "🌳",
+      time: "10:00–13:00",
+      place: "Bromma, Riksby",
+      desc: "Under april deltar vi i Brommas årliga föreningsstädning där vi ansvarar för att städa område BRO30. 
+        Genom vårt arbete bidrar vi till en renare närmiljö och samlar samtidigt in 3000 kronor till klasskassan. 
+        För alla som deltar bjuder vi på korv med bröd och dryck efter städningen.",
+      link: ""
     },
     {
       label: "Vår 2026",
-      text: "Nästa försäljning",
-      icon: "💰"
+      text: "Garage loppis",
+      icon: "♻️"
     },
     {
       label: "Juni 2026",
@@ -64,6 +80,26 @@ window.KLASSRESA_CONFIG = {
     desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
     link: "https://forms.gle/i9yKtNpYMkemE9w66"
     /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
-  }
+  },
+     {
+    date: "2026-03-14",
+    title: 'Fikakassan försäljning',
+    text: "",
+    time: "14 mars - 25 mars",
+    desc: "",
+    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
+  },
+     {
+    date: "2026-04-18",
+    title: 'Bromma Vårstädning',
+    text: "Under april deltar vi i Brommas årliga föreningsstädning där vi ansvarar för att städa område BRO30. 
+        Genom vårt arbete bidrar vi till en renare närmiljö och samlar samtidigt in 3000 kronor till klasskassan. 
+        För alla som deltar bjuder vi på korv med bröd och dryck efter städningen.",
+    time: "10:00–13:00",
+    place: "Bromma, Riksby",
+    desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
+    link: "https://forms.gle/i9yKtNpYMkemE9w66"
+  },
+   
 ]
 };
