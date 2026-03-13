@@ -4,37 +4,69 @@ window.KLASSRESA_CONFIG = {
   current: 18200,
   ticks: [0, 10000, 15000, 20000, 30000, 70000],
 
-  activities: [
-    {
-      date: "2026-02-22",
-      label: "22 feb",
-      text: "Filmkväll",
-      icon: "🎬",
-      time: "15:30–18:00",
-      place: "Lokalen, Tunnlandsvägen 97",
-      desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
-      link: "https://forms.gle/i9yKtNpYMkemE9w66"
-    },
-    {
-      date: "2026-03-14",
-      label: "14 mars",
-      text: "Fikakassan försäljning",
-      icon: "💰",
-      time: "14 mars - 25 mars",
-      desc: "",
-      link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
-    },
-    {
-      date: "2026-04-28",
-      label: "28 april",
-      text: "Bromma Vårstädning",
-      icon: "🌳",
-      time: "10:00–13:00",
-      place: "Bromma, Riksby",
-      desc: "Under april deltar vi i Brommas årliga föreningsstädning där vi ansvarar för att städa område BRO30.\nGenom vårt arbete bidrar vi till en renare närmiljö och samlar samtidigt in 3000 kronor till klasskassan.\nFör alla som deltar bjuder vi på korv med bröd och dryck efter städningen.",
-      link: ""
-    }
-  ],
+ activities: [
+  {
+    date: "2025-09-29",
+    label: "29 sep",
+    text: "Start försäljning (Kakservice)",
+    icon: "🍪"
+  },
+  {
+    date: "2025-10-16",
+    label: "16 okt",
+    text: "Sista beställningsdag",
+    icon: "📦"
+  },
+  {
+    date: "2025-11-15",
+    label: "15 nov",
+    text: "Halloweenfest i lokalen",
+    icon: "🎃",
+    time: "15:00–18:00",
+    place: "Lokalen, Tunnlandsvägen 97",
+    desc: "Entré: 100 kr/barn; 50 kr/syskon – det täcker mat, snacks/godis och priser till tävlingarna.\nFöräldrar kan köpa fika på plats, vilket ger extra intäkter till klasskassan.",
+    link: "https://forms.gle/Vs9YYu265sg8CKM36"
+  },
+  {
+    date: "2026-03-22",
+    label: "22 mars",
+    text: "Filmkväll",
+    icon: "🎬",
+    time: "15:30–18:00",
+    place: "Lokalen, Tunnlandsvägen 97",
+    desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
+    link: "https://forms.gle/i9yKtNpYMkemE9w66"
+  },
+  {
+    date: "2026-03-14",
+    label: "14 mars",
+    text: "Fikakassan försäljning",
+    icon: "💰",
+    time: "14 mars - 25 mars",
+    desc: "",
+    link: "https://fikakassan.se/portal/signup_seller/WTemmujgKTXzpYzJelLB/"
+  },
+  {
+    date: "2026-04-18",
+    label: "18 april",
+    text: "Bromma Vårstädning",
+    icon: "🌳",
+    time: "10:00–13:00",
+    place: "Bromma, Riksby",
+    desc: "Under april deltar vi i Brommas årliga föreningsstädning där vi ansvarar för att städa område BRO30.\nGenom vårt arbete bidrar vi till en renare närmiljö och samlar samtidigt in 3000 kronor till klasskassan.\nFör alla som deltar bjuder vi på korv med bröd och dryck efter städningen.",
+    link: ""
+  },
+  {
+    label: "Vår 2026",
+    text: "Garage loppis",
+    icon: "♻️"
+  },
+  {
+    label: "Juni 2026",
+    text: "Sommar picnic",
+    icon: "🫕"
+  }
+],
 
 
  news: [
