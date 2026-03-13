@@ -188,11 +188,27 @@ function renderNews() {
     return;
   }
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   items.sort((a, b) => {
     if (!a.date && !b.date) return 0;
     if (!a.date) return 1;
     if (!b.date) return -1;
-    return b.date.localeCompare(a.date);
+
+    const aDate = new Date(a.date);
+    const bDate = new Date(b.date);
+
+    if (isNaN(aDate) && isNaN(bDate)) return 0;
+    if (isNaN(aDate)) return 1;
+    if (isNaN(bDate)) return -1;
+
+    const aUpcoming = aDate >= today;
+    const bUpcoming = bDate >= today;
+
+    if (aUpcoming !== bUpcoming) return aUpcoming ? -1 : 1;
+    if (aUpcoming && bUpcoming) return aDate - bDate;
+    return bDate - aDate;
   });
 
   list.innerHTML = items.map((item, index) => {
