@@ -95,7 +95,7 @@ window.KLASSRESA_CONFIG = {
     time: "10:00–13:00",
     place: "Bromma, Riksby",
     desc: "Registrera gärna barnen och skriv om eventuella allergier. Det blir popcorn, chips och dricka.",
-    link: "https://forms.gle/i9yKtNpYMkemE9w66"
+    link: "https://forms.gle/PTYpKLqFAQ7bMf3j9"
   }
 ]
 };
