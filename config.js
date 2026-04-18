@@ -89,7 +89,7 @@ window.KLASSRESA_CONFIG = {
     /* albumUrl: "https://photos.app.goo.gl/rBWYv1WB2FGBfZjt6" */
   },
   {
-    date: "2026-04-28",
+    date: "2026-04-18",
     title: 'Bromma Vårstädning',
     text: "Under april deltar vi i Brommas årliga föreningsstädning där vi ansvarar för att städa område BRO30.\nGenom vårt arbete bidrar vi till en renare närmiljö och samlar samtidigt in 3000 kronor till klasskassan.\nFör alla som deltar bjuder vi på korv med bröd och dryck efter städningen.",
     time: "10:00–13:00",
